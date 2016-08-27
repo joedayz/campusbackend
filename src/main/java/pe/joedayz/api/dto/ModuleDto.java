@@ -117,8 +117,6 @@ public class ModuleDto {
         this.visible = visible;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -135,6 +133,12 @@ public class ModuleDto {
         return (int) (moduleId ^ (moduleId >>> 32));
     }
 
-
-
+    @Override
+    public String toString() {
+        return "ModuleDto{" +
+                "moduleId=" + moduleId +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

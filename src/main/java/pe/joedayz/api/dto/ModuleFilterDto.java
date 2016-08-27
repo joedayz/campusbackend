@@ -3,33 +3,35 @@ package pe.joedayz.api.dto;
 /**
  * Created by josediaz on 17/08/2016.
  */
-public class ModuleFilterDto {
-    private String code;
-    private String name;
-    private String parentName;
+public class ModuleFilterDto extends PageableFilter {
 
-    public String getCode() {
-        return code;
-    }
+	private String code;
+	private String name;
+	private String parentName;
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getParentName() {
-        return parentName;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
 
 }

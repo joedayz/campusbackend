@@ -58,6 +58,4 @@ public class PageableFilter {
     public void setSortDir(String sortDir) {
         this.sortDir = sortDir;
     }
-
-
 }

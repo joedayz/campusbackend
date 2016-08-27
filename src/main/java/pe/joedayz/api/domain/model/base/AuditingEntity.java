@@ -24,7 +24,7 @@ public class AuditingEntity  implements BaseEntity{
 
     @Version
     @Column(name = "row_version")
-    private Integer rowVersion;
+    private Long rowVersion;
 
 
     @Override
@@ -67,11 +67,11 @@ public class AuditingEntity  implements BaseEntity{
         this.updatedDate = updatedDate;
     }
 
-    public Integer getRowVersion() {
+    public Long getRowVersion() {
         return rowVersion;
     }
 
-    public void setRowVersion(Integer rowVersion) {
+    public void setRowVersion(Long rowVersion) {
         this.rowVersion = rowVersion;
     }
 }

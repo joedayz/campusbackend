@@ -5,14 +5,16 @@ import java.math.BigDecimal;
 public class ModuleParentDto extends  ModuleDto {
     private String parentCode;
     private String parentName;
+    private String parentUrl;
 
     public ModuleParentDto() {
     }
 
-    public ModuleParentDto(String parentCode, String parentName, long moduleId, String code, String helpUrl, String menuLabel, BigDecimal menuOrder, String name, String url) {
+    public ModuleParentDto(String parentCode, String parentName, String parentUrl, long moduleId, String code, String helpUrl, String menuLabel, BigDecimal menuOrder, String name, String url) {
         super(moduleId, code, helpUrl, menuLabel, menuOrder, name, url);
         this.parentCode = parentCode;
         this.parentName = parentName;
+        this.parentUrl = parentUrl;
     }
 
     public String getParentCode() {
@@ -30,6 +32,14 @@ public class ModuleParentDto extends  ModuleDto {
     public void setParentName(String parentName) {
         this.parentName = parentName;
     }
+    
+    public String getParentUrl() {
+		return parentUrl;
+	}
+
+	public void setParentUrl(String parentUrl) {
+		this.parentUrl = parentUrl;
+	}
 
     @Override
     public boolean equals(Object o) {

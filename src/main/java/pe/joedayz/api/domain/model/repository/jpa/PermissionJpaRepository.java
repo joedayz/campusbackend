@@ -17,7 +17,7 @@ public interface PermissionJpaRepository extends CrudRepository<Permission, Long
     Permission findOneByName(@Param("moduleId") Long moduleId, @Param("roleId") Long roleId);
 
     @Modifying
-    @Query("DELETE FROM Permission t WHERE t.id.roleId = :roleId  ")
+    @Query("DELETE FROM Permission t WHERE t.role.roleId = :roleId  ")
     void deletePermisionByRole(@Param("roleId") Long roleId);
 
 }

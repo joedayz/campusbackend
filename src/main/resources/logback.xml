@@ -8,9 +8,9 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
+        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+            <!--<level>INFO</level>-->
+        <!--</filter>-->
 
         <file>api.log</file>
 
@@ -34,6 +34,8 @@
     <logger name="org.springframework.web.servlet.mvc" level="INFO" /> <!-- some serialization issues are at trace level here: org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod -->
     <logger name="org.hibernate.SQL" level="DEBUG" />
     <logger name="org.hibernate.engine.jdbc.batch.internal.BatchingBatch" level="DEBUG" />
+    <logger name="pe.joedayz.api.support.LoggingAspect" level="WARN" />
+    <logger name="pe.joedayz.api.config.ApiAudit" level="DEBUG" />
     <!--<logger name="org.hibernate.type" level="TRACE" />-->
 
     <root level="info">

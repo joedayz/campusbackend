@@ -15,6 +15,8 @@ public class RoleViewDto {
     private String isUpdateRole;
     private String roleAccess;
     private String isEditCode;
+    private String isEditForceReadOnly;
+
     private List<ModuleViewDto> modules;
 
     public List<ModuleViewDto> getModules() {
@@ -88,4 +90,9 @@ public class RoleViewDto {
     public void setIsEditCode(String isEditCode) {
         this.isEditCode = isEditCode;
     }
+
+    public String getIsEditForceReadOnly() { return isEditForceReadOnly; }
+
+    public void setIsEditForceReadOnly(String isEditForceReadOnly) { this.isEditForceReadOnly = isEditForceReadOnly; }
 }
+

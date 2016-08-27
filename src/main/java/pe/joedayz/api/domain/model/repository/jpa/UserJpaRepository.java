@@ -38,7 +38,7 @@ public interface UserJpaRepository extends CrudRepository<User, Long> {
     @Query("SELECT t FROM User t WHERE LOWER(t.userName) = LOWER(:userName) AND t.userId <> :userId")
     User findDistinct(@Param("userName") String userName,@Param("userId") Long userId);
 
-    @Query("SELECT t FROM User t WHERE t.user.userId = :userId")
+    @Query("SELECT t FROM User t WHERE t.userId = :userId")
     List<User> findManagerReference(@Param("userId") Long userId);
 
     User save(User customer);

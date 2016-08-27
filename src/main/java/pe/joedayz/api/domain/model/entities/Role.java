@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.Cascade;
@@ -36,7 +37,7 @@ public class Role extends AuditingEntity implements Serializable, BaseEntity {
 
 
 
-	@Column(name="STATUS")
+	@Column(name="status")
 	@Type(type = "pe.joedayz.api.enums.GenericEnumUserType",
 			parameters = {@org.hibernate.annotations.Parameter(name = "enumClass", value = "pe.joedayz.api.enums.ActiveInactiveStatusEnum")})
 	private ActiveInactiveStatusEnum status;
@@ -129,4 +130,12 @@ public class Role extends AuditingEntity implements Serializable, BaseEntity {
 		return userRole;
 	}
 
+
+	public ActiveInactiveStatusEnum getStatus() {
+		return status;
+	}
+
+	public void setStatus(ActiveInactiveStatusEnum status) {
+		this.status = status;
+	}
 }

@@ -17,4 +17,4 @@ public class ApiEncoding {
 	        registrationBean.setFilter(characterEncodingFilter);
 	        return registrationBean;
 	    }
-	}
+}

@@ -10,6 +10,7 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
 		classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.0'
 		classpath('se.transmode.gradle:gradle-docker:1.2')
+		classpath 'org.ajoberstar:grgit:1.1.0'
 	}
 }
 
@@ -22,6 +23,8 @@ apply plugin: 'org.asciidoctor.gradle.asciidoctor'
 apply plugin: 'docker'
 //apply plugin: 'checkstyle'
 
+project.version = '2.0.0.0'
+
 jar {
 	baseName = 'Campus_Backend'
 	version = '0.0.1-SNAPSHOT'
@@ -32,6 +35,9 @@ targetCompatibility = 1.8
 repositories {
 	mavenCentral()
 	mavenLocal()
+	maven  {
+		url "http://200.123.0.72:8081/nexus/content/repositories/thirdparty"
+	}
 }
 
 
@@ -113,13 +119,9 @@ bootRun {
 	addResources = true
 }
 
-
-
 springBoot {
 	mainClass = "pe.joedayz.api.ApiApplication"
 }
-
-
 
 asciidoctor {
 	options = [
@@ -141,4 +143,31 @@ task buildDocker(type: Docker, dependsOn: assemble) {
 			into stageDir
 		}
 	}
+}
+
+
+def getGitBranchCommit() {
+	try {
+		def git = org.ajoberstar.grgit.Grgit.open(file('.'))
+		def revision = git.head().abbreviatedId
+		return revision
+	} catch (IOException ex) {
+		return "UNKNOWN"
+	}
+
+}
+
+
+task printVersion {
+	// any code that goes here is part of configuring the task
+	// this code will always get run, even if the task is not executed
+	doLast { // add a task action
+		// any code that goes here is part of executing the task
+		// this code will only get run if and when the task gets executed
+		println project.version
+	}
+}
+
+task buildInfo {
+	println project.version + "-" + getGitBranchCommit()
 }

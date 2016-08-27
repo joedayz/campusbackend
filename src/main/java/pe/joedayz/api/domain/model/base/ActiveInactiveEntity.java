@@ -7,4 +7,5 @@ public interface ActiveInactiveEntity {
 
 	void setStatus(ActiveInactiveStatusEnum status);
 
+
 }

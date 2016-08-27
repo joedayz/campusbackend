@@ -71,4 +71,5 @@ public class ResetRegistry extends AuditingEntity implements Serializable, BaseE
 		this.status = status;
 	}
 
+
 }
