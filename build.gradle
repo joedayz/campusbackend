@@ -158,6 +158,7 @@ def getGitBranchCommit() {
 }
 
 
+
 task printVersion {
 	// any code that goes here is part of configuring the task
 	// this code will always get run, even if the task is not executed
