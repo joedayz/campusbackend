@@ -38,57 +38,57 @@ public class ModuleJdbcRepositoryImpl implements ModuleJdbcRepository {
 
 	private String generateModuleSearchQuery(ModuleFilterDto filter, WhereParams params) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT ");
-		sql.append("  M1.MODULE_ID moduleId, ");
-		sql.append("  M1.CODE code, ");
-		sql.append("  M1.NAME name, ");		
-		sql.append("  M1.MENU_LABEL menuLabel, ");		
-		sql.append("  M1.MENU_ORDER menuOrder, ");
-		sql.append("  ES.VALUE visible, ");
-		sql.append("  M2.NAME parentName ");
-		sql.append(" FROM MODULE M1 ");	
-		sql.append(" LEFT OUTER JOIN  MODULE M2 ON M1.PARENT_MODULE_ID = M2.MODULE_ID ");
-		sql.append(" LEFT OUTER JOIN  GENERAL_TABLE ES ON M1.VISIBLE=ES.CODE AND ES.TABLE_NAME='").append(YesNoEnum.class.getTypeName()).append("' ");
-		sql.append("    WHERE 1 = 1 ");		
-		sql.append(params.filter(" AND UPPER(M1.CODE) LIKE UPPER('%' ||:code || '%') ", filter.getCode()));
-		sql.append(params.filter(" AND UPPER(M1.NAME) LIKE UPPER('%' ||:name || '%') ", filter.getName()));
-		sql.append(params.filter(" AND UPPER(M2.NAME) LIKE UPPER('%' ||:parentName || '%') ", filter.getParentName()));
+		sql.append("select ");
+		sql.append("  m1.module_id moduleId, ");
+		sql.append("  m1.code code, ");
+		sql.append("  m1.name name, ");
+		sql.append("  m1.menu_label menuLabel, ");
+		sql.append("  m1.menu_order menuOrder, ");
+		sql.append("  es.value visible, ");
+		sql.append("  m2.name parentName ");
+		sql.append(" from module m1 ");
+		sql.append(" left outer join  module m2 on  m1.parent_module_id = m2.module_id ");
+		sql.append(" left outer join  general_table es on m1.visible=es.code and es.table_name='").append(YesNoEnum.class.getTypeName()).append("' ");
+		sql.append("    where 1 = 1 ");
+		sql.append(params.filter(" and upper(m1.code) like upper('%' ||:code || '%') ", filter.getCode()));
+		sql.append(params.filter(" and upper(m1.name) like upper('%' ||:name || '%') ", filter.getName()));
+		sql.append(params.filter(" and upper(m2.name) like upper('%' ||:parentName || '%') ", filter.getParentName()));
 		LOGGER.info("generateModuleSearchQuery --> "+sql.toString());
 		return sql.toString();
 	}
 	
 	private String generateModuleFindQuery(Long moduleId, WhereParams params) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT ");
-		sql.append("  M.MODULE_ID moduleId, ");
-		sql.append("  M.CODE code, ");
-		sql.append("  M.NAME name, ");		
-		sql.append("  M.MENU_LABEL menuLabel, ");		
-		sql.append("  M.MENU_ORDER menuOrder, ");
-		sql.append("  M.URL url, ");
-		sql.append("  M.HELP_URL helpUrl, ");
-		sql.append("  M.VISIBLE visible, ");
-		sql.append("  M.PARENT_MODULE_ID parentModuleId, ");
-		sql.append("  M.CREATED_BY createdBy, ");
-		sql.append("  M.CREATED_DATE createdDate, ");
-		sql.append("  M.UPDATED_BY updatedBy, ");
-		sql.append("  M.UPDATED_DATE updatedDate, ");
-		sql.append("  M.ROW_VERSION rowVersion ");
-		sql.append(" FROM MODULE M ");	
-		sql.append("    WHERE 1 = 1 ");		
-		sql.append(params.filter(" AND M.MODULE_ID =:moduleId ", moduleId));
+		sql.append("select ");
+		sql.append("  m.module_id moduleId, ");
+		sql.append("  m.code code, ");
+		sql.append("  m.name name, ");
+		sql.append("  m.menu_label menuLabel, ");
+		sql.append("  m.menu_order menuOrder, ");
+		sql.append("  m.url url, ");
+		sql.append("  m.help_url helpUrl, ");
+		sql.append("  m.visible visible, ");
+		sql.append("  m.parent_module_id parentModuleId, ");
+		sql.append("  m.created_by createdBy, ");
+		sql.append("  m.created_date createdDate, ");
+		sql.append("  m.updated_by updatedBy, ");
+		sql.append("  m.updated_date updatedDate, ");
+		sql.append("  m.row_version rowVersion ");
+		sql.append(" from module m ");
+		sql.append("    where 1 = 1 ");
+		sql.append(params.filter(" and m.module_id =:moduleId ", moduleId));
 		LOGGER.info("generateModuleFindQuery --> "+sql.toString());
 		return sql.toString();
 	}
 	
 	private String generateModulesFindExceptItselfQuery(Long moduleId, WhereParams params) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT ");
-		sql.append("  M.MODULE_ID moduleId, ");
-		sql.append("  M.NAME name ");
-		sql.append(" FROM MODULE M ");	
-		sql.append("    WHERE 1 = 1 ");		
-		sql.append(params.filter(" AND M.MODULE_ID !=:moduleId ", moduleId));
+		sql.append("select ");
+		sql.append("  m.module_id moduleId, ");
+		sql.append("  m.name name ");
+		sql.append(" from module m ");
+		sql.append("    where 1 = 1 ");
+		sql.append(params.filter(" and m.module_id !=:moduleId ", moduleId));
 		LOGGER.info("generateModuleFindQuery --> "+sql.toString());
 		return sql.toString();
 	}

@@ -79,27 +79,27 @@ public class RoleJdbcRepositoryImpl implements RoleJdbcRepository {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append(" SELECT ");
-        sql.append(" R.ROLE_ID \"roleId\", ");
-        sql.append(" R.CODE \"roleCode\", ");
-        sql.append(" R.ROLE_NAME \"roleName\", ");
-        sql.append(" ( CASE WHEN R.CODE IN ('ADMIN','PRIAN','PRIMA','SAACM') THEN 'N' " +
+        sql.append(" select ");
+        sql.append(" r.role_id \"roleId\", ");
+        sql.append(" r.code \"roleCode\", ");
+        sql.append(" r.role_name \"roleName\", ");
+        sql.append(" ( case when r.code IN ('ADMIN','PROFESOR','ESTUDIANTE') THEN 'N' " +
                    "   ELSE 'Y'  END) \"isDeleteRole\", ");
         sql.append("  'Y'   \"isUpdateRole\", ");
-        sql.append(" ( CASE WHEN R.CODE IN ('PRIAN','PRIMA','SAACM') THEN 'N' " +
+        sql.append(" ( CASE WHEN R.CODE IN ('PROFESOR','ESTUDIANTE') THEN 'N' " +
                 "   ELSE 'Y'  END) \"isEditCode\", ");
 
 
-        sql.append(" STATUS.VALUE \"roleStatus\" ");
+        sql.append(" status.value \"roleStatus\" ");
 
-        sql.append(" FROM ");
-        sql.append(" ROLE R ");
-        sql.append(" LEFT JOIN GENERAL_TABLE STATUS ON STATUS.CODE=R.STATUS AND STATUS.TABLE_NAME='").append(ActiveInactiveStatusEnum.class.getTypeName()).append("'  \n");
+        sql.append(" from ");
+        sql.append(" role r ");
+        sql.append(" left join general_table status on status.code=r.status and status.table_name='").append(ActiveInactiveStatusEnum.class.getTypeName()).append("'  \n");
 
-        sql.append(" WHERE 1=1 ");
+        sql.append(" where 1=1 ");
 
-        sql.append(params.filter(" AND UPPER(R.ROLE_NAME)  LIKE upper('%'|| :rname ||'%')  ",name));
-        sql.append(" order By  R.ROLE_ID ");
+        sql.append(params.filter(" and upper(r.role_name)  like upper('%'|| :rname ||'%')  ",name));
+        sql.append(" order by  r.role_id ");
         return sql.toString();
     }
 

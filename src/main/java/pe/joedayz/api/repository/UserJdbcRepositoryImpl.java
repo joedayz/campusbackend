@@ -62,18 +62,18 @@ public class UserJdbcRepositoryImpl implements UserJdbcRepository{
     private String generateSearchQuery(UserFilterDto filter, WhereParams params){
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT \n");
-        sql.append(" US.USER_ID  AS \"id\", \n");
-        sql.append(" US.USER_NAME  AS \"name\", \n");
-        sql.append(" US.FIRST_NAME  AS \"firstName\", \n");
-        sql.append(" US.LAST_NAME  AS \"lastName\", \n");
-        sql.append(" US.STATUS  AS \"status\" \n");
-        sql.append(" FROM USERS US \n" );
-        sql.append(" WHERE 1=1 ");
-        sql.append(params.filter(" AND upper(US.FIRST_NAME) LIKE upper('%'|| :firstName ||'%') ",filter.getFirstName()));
-        sql.append(params.filter(" AND upper(US.LAST_NAME) LIKE upper('%'|| :lastName ||'%') ",filter.getLastName()));
-        sql.append(params.filter(" AND upper(US.USER_NAME) LIKE upper('%'|| :userName ||'%') ",filter.getUserName()));
-        
+        sql.append("select \n");
+        sql.append(" us.user_id  as \"id\", \n");
+        sql.append(" us.user_name  as \"name\", \n");
+        sql.append(" us.first_name  as \"firstName\", \n");
+        sql.append(" us.last_name  as \"lastName\", \n");
+        sql.append(" us.status  as \"status\" \n");
+        sql.append(" from users us \n" );
+        sql.append(" where 1=1 ");
+        sql.append(params.filter(" and upper(us.first_name) LIKE upper('%'|| :firstName ||'%') ",filter.getFirstName()));
+        sql.append(params.filter(" and upper(us.last_name) LIKE upper('%'|| :lastName ||'%') ",filter.getLastName()));
+        sql.append(params.filter(" and upper(us.user_name) LIKE upper('%'|| :userName ||'%') ",filter.getUserName()));
+
 
         LOG.info(sql.toString());
         return sql.toString();
@@ -81,12 +81,12 @@ public class UserJdbcRepositoryImpl implements UserJdbcRepository{
 
     private String generateConfirmPasswordQuery(String username, String password, WhereParams params){
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT \n");
-        sql.append(" count(US.USER_ID) ");
-        sql.append(" FROM USERS US \n" );
-        sql.append(" WHERE 1=1 ");
-        sql.append(params.filter(" AND US.USER_NAME = :firstName  ",username));
-        sql.append(params.filter(" AND US.PASSWORD = :password  ",password));
+        sql.append("select \n");
+        sql.append(" count(us.user_id) ");
+        sql.append(" from users us \n" );
+        sql.append(" where 1=1 ");
+        sql.append(params.filter(" and us.user_name = :firstName  ",username));
+        sql.append(params.filter(" and us.password = :password  ",password));
 
         return sql.toString();
     }

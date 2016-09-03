@@ -33,39 +33,39 @@ public class GeneralTableJdbcRepositoryImpl implements GeneralTableJdbcRepositor
 
 	private String generateGeneralTableSearchQuery(GeneralTableFilterDto filter, WhereParams params) {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" SELECT ");
-		sql.append("  GT.GENERAL_TABLE_ID generalTableId, ");
-		sql.append("  GT.TABLE_NAME tableName, ");
-		sql.append("  GT.CODE code, ");
-		sql.append("  GT.VALUE \"value\", ");
-		sql.append("  GT.SORT_ORDER sortOrder, ");	
-		sql.append("  ES.VALUE status ");
-		sql.append(" FROM GENERAL_TABLE GT ");	
-		sql.append(" LEFT OUTER JOIN GENERAL_TABLE ES ON GT.STATUS=ES.CODE AND ES.TABLE_NAME='").append(StatusEnum.class.getTypeName()).append("' ");	
-		sql.append(" WHERE 1 = 1 ");
-		sql.append(params.filter(" AND GT.TABLE_NAME = :tableName ", filter.getGroup()));
-		sql.append(params.filter(" AND UPPER(GT.CODE) LIKE UPPER(:code || '%') ", filter.getCode()));
+		sql.append(" select ");
+		sql.append("  gt.general_table_id generalTableId, ");
+		sql.append("  gt.table_name tableName, ");
+		sql.append("  gt.code code, ");
+		sql.append("  gt.value \"value\", ");
+		sql.append("  gt.sort_order sortOrder, ");
+		sql.append("  es.value status ");
+		sql.append(" from general_table gt ");
+		sql.append(" left outer join general_table es on gt.status=es.code and es.table_name='").append(StatusEnum.class.getTypeName()).append("' ");
+		sql.append(" where 1 = 1 ");
+		sql.append(params.filter(" and gt.table_name = :tableName ", filter.getGroup()));
+		sql.append(params.filter(" and upper(gt.code) like upper(:code || '%') ", filter.getCode()));
 		return sql.toString();
 	}
 	
 	private String generateGeneralTableSearchQueryCodeUnique(GeneralTableFilterDto filter, WhereParams params) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * ");		
-		sql.append(" FROM GENERAL_TABLE GT ");			
-		sql.append("    WHERE 1 = 1 ");
-		sql.append(params.filter(" AND GT.TABLE_NAME = :group ", filter.getGroup()));
-		sql.append(params.filter(" AND GT.CODE = :code ", filter.getCode()));
-		sql.append(params.filter(" AND GT.GENERAL_TABLE_ID != :toValidateNotId   ",filter.getValidateNotGeneralTableId()));
+		sql.append("select * ");
+		sql.append(" from general_table gt ");
+		sql.append("    where 1 = 1 ");
+		sql.append(params.filter(" and gt.table_name = :group ", filter.getGroup()));
+		sql.append(params.filter(" and gt.code = :code ", filter.getCode()));
+		sql.append(params.filter(" and gt.general_table_id != :toValidateNotId   ",filter.getValidateNotGeneralTableId()));
 		return sql.toString();
 	}
 	
 	private String generateGeneralTableFindByGroupQuery() {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" SELECT ");
-		sql.append("  GT.TABLE_NAME \"value\", ");		
-		sql.append("  GT.TABLE_NAME code ");	
-		sql.append(" FROM GENERAL_TABLE GT ");			
-		sql.append(" GROUP BY GT.TABLE_NAME ");
+		sql.append(" select ");
+		sql.append("  gt.table_name \"value\", ");
+		sql.append("  gt.table_name code ");
+		sql.append(" from general_table gt ");
+		sql.append(" group by gt.table_name ");
 		return sql.toString();
 	}
 	

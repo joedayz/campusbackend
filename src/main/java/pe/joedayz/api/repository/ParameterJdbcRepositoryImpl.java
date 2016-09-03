@@ -37,16 +37,16 @@ public class ParameterJdbcRepositoryImpl implements ParameterJdbcRepository {
 
 	private String generateParameterSearchQuery(ParameterFilterDto filter, WhereParams params) {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT P.PARAMETER_ID parameterId, ");
-		sql.append("  P.CODE code, ");
-		sql.append("  P.DESCRIPTION description, ");
-		sql.append("  P.VALUE value, ");
-		sql.append("  ES.VALUE status ");
-		sql.append(" FROM PARAMETER P ");
-		sql.append(" INNER JOIN GENERAL_TABLE ES ON P.STATUS=ES.CODE AND ES.TABLE_NAME='").append(StatusEnum.class.getTypeName()).append("' ");		
-		sql.append("    WHERE 1 = 1 ");
-		sql.append(params.filter(" AND UPPER(P.CODE) LIKE UPPER('%'||:code || '%') ", filter.getCode()));
-		sql.append(params.filter(" AND UPPER(P.DESCRIPTION) LIKE UPPER('%'||:description || '%') ", filter.getDescription()));
+		sql.append("select p.parameter_id parameterId, ");
+		sql.append("  p.code code, ");
+		sql.append("  p.description description, ");
+		sql.append("  p.value value, ");
+		sql.append("  es.value status ");
+		sql.append(" from parameter p ");
+		sql.append(" inner join general_table es on p.status=es.code and es.table_name='").append(StatusEnum.class.getTypeName()).append("' ");
+		sql.append("    where 1 = 1 ");
+		sql.append(params.filter(" and upper(p.code) like upper('%'||:code || '%') ", filter.getCode()));
+		sql.append(params.filter(" and upper(p.description) like upper('%'||:description || '%') ", filter.getDescription()));
 		
 		LOGGER.info("generateParameterSearchQuery --> " + sql.toString());
 		
