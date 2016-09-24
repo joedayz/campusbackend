@@ -178,7 +178,7 @@ public class UserServiceImpl implements UserService {
          entity.setPassword(dto.getNewPassword());
 
         userJpaRepository.save(entity);
-        //LOG.info("Processed User Edit Profile - Id <"+entity.getUserId()+">");
+        
         return entity.getUserId();
     }
 
@@ -197,24 +197,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserViewDto> searchUser(UserFilterDto value) {
         StringBuffer sql= new StringBuffer();
-        sql.append("SELECT \n");
-        sql.append("  TU.USER_ID id, \n");
-        sql.append("  TU.USER_NAME name, \n");
-        sql.append("  TU.FIRST_NAME firstName, \n");
-        sql.append("  TU.LAST_NAME lastName, \n");
-        sql.append("  (TU.FIRST_NAME || ' ' ||TU.LAST_NAME) fullName \n");
-        sql.append("FROM USERS TU \n");
-        sql.append("INNER JOIN USER_ROLE TUR \n");
-        sql.append("ON TUR.USER_ID = TU.USER_ID \n");
-        sql.append("INNER JOIN ROLE R \n");
-        sql.append("ON TUR.ROLE_ID = R.ROLE_ID \n");
+        sql.append("select \n");
+        sql.append("  tu.user_id id, \n");
+        sql.append("  tu.user_name name, \n");
+        sql.append("  tu.first_name firstName, \n");
+        sql.append("  tu.last_name lastName, \n");
+        sql.append("  (tu.first_name || ' ' ||tu.last_name) fullName \n");
+        sql.append("from users tu \n");
+        sql.append("inner join user_role tur \n");
+        sql.append("on tur.user_id = tu.user_id \n");
+        sql.append("inner join role r \n");
+        sql.append("on tur.role_id = r.role_id \n");
 
-        sql.append("WHERE 1=1 \n");
+        sql.append("where 1=1 \n");
         WhereParams params= new WhereParams();
 
-        sql.append(params.filter(" AND upper(TU.FIRST_NAME || ' '|| TU.LAST_NAME) LIKE upper('%'|| :name ||'%') ",value.getName()));
-        sql.append(params.filter(" AND TU.STATUS = :status ", StatusEnum.ACTIVE.getCode()));
-        sql.append(params.filter(" AND R.CODE = :roleCode ", value.getRole().getCode()));
+        sql.append(params.filter(" and upper(tu.first_name || ' '|| tu.last_name) like upper('%'|| :name ||'%') ",value.getName()));
+        sql.append(params.filter(" and tu.status = :status ", StatusEnum.ACTIVE.getCode()));
+        sql.append(params.filter(" and r.code = :roleCode ", value.getRole().getCode()));
         return jdbcTemplate.query(sql.toString(),params.getParams(),new BeanPropertyRowMapper<>(UserViewDto.class));
     }
 
@@ -222,15 +222,15 @@ public class UserServiceImpl implements UserService {
     public List<UserViewDto> searchManager(String query) {
         StringBuffer sql= new StringBuffer();
 
-        sql.append("SELECT \n");
-        sql.append("  TU.USER_ID id, \n");
-        sql.append("  TU.USER_NAME name, \n");
-        sql.append("  TU.FIRST_NAME firstName, \n");
-        sql.append("  TU.LAST_NAME lastName \n");
-        sql.append("FROM USERS TU \n");
-        sql.append("WHERE 1=1 \n");
+        sql.append("select \n");
+        sql.append("  tu.user_id id, \n");
+        sql.append("  tu.user_name name, \n");
+        sql.append("  tu.first_name firstName, \n");
+        sql.append("  tu.last_name lastName \n");
+        sql.append("from users tu \n");
+        sql.append("where 1=1 \n");
         WhereParams params= new WhereParams();
-        sql.append(params.filter(" AND upper(TU.FIRST_NAME || ' '|| TU.LAST_NAME) LIKE upper('%'|| :name ||'%') ",query));
+        sql.append(params.filter(" and upper(tu.first_name || ' '|| tu.last_name) like upper('%'|| :name ||'%') ",query));
 
         return jdbcTemplate.query(sql.toString(),params.getParams(),new BeanPropertyRowMapper<>(UserViewDto.class));
     }
