@@ -103,7 +103,6 @@ public class ModuleJdbcRepository implements ModuleCustomRepository {
             "             m.menu_label AS \"menuLabel\",\n" +
             "             m.name AS \"name\",\n" +
             "             m.url AS \"url\"\n" +
-            "             --p.permission_type as \"permissionType\"\n" +
             "            from module m\n" +
             "            inner join module modprt on m.parent_module_id = modprt.module_id\n" +
             "            where  1=1 " ;

@@ -47,7 +47,7 @@ public class PageableQuery {
         if(sortQuery !=null && !sortQuery.isEmpty()){
             query.append(" row_number() over ( ").append(sortQuery).append(" ) ");
         }else{
-            query.append(" ROWNUM ");
+            query.append(" @rownum:=@rownum+1 ");
         }
 
         query.append(" rn");
@@ -55,15 +55,15 @@ public class PageableQuery {
 
         query.append(mainSection);
 
-        query.append(" )temp");
+        query.append(" )temp ,  (SELECT @rownum:=0) r  ");
 
-        query.append(" )");
+        query.append(" ) t ");
         query.append(" where ");
-//filter.getSkip().intValue(),filter.getSkip().intValue()+filter.getTake().intValue()
+
         int fromRow=pageableFilter.getSkip().intValue()+1;
         int toRow=pageableFilter.getSkip().intValue()+pageableFilter.getTake().intValue();
-        query.append(" rn>= ").append(fromRow);
-        query.append(" and rn<= ").append(toRow);
+        query.append(" t.rn>= ").append(fromRow);
+        query.append(" and t.rn<= ").append(toRow);
 
         query.append(sortQuery);
         //query.append(" order by sal desc");

@@ -12,11 +12,11 @@
             <!--<level>INFO</level>-->
         <!--</filter>-->
 
-        <file>api.log</file>
+        <file>campus-be.log</file>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>api.%d{yyyy-MM-dd}.zip</fileNamePattern>
+            <fileNamePattern>campus-be.%d{yyyy-MM-dd}.zip</fileNamePattern>
 
             <!-- keep 7 days' worth of history -->
             <maxHistory>7</maxHistory>

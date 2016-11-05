@@ -10,13 +10,13 @@ spring:
     port: 465
     sender: campus@joedayz.pe
     username: campus@joedayz.pe
-    password: Sunat2016
+    password: ArrozConAngular2
     fromIP: campus.joedayz.pe
 
   datasource:
     url: jdbc:mysql://localhost/api
     username: root
-    password: 12345678
+    password: joedayz
     testOnBorrow: true
     removeAbandonedTimeout: 1800
     removeAbandoned: true
@@ -59,7 +59,7 @@ spring:
     port: 465
     sender: campus@joedayz.pe
     username: campus@joedayz.pe
-    password: Sunat2016
+    password: ArrozConAngular2
     fromIP: campus.joedayz.pe
 
   datasource:
@@ -84,7 +84,7 @@ spring:
     show-sql: true
 
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       naming-strategy: org.hibernate.cfg.DefaultNamingStrategy
 
 

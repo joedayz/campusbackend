@@ -10,9 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-/**
- * Created by JVergara on 16/06/2016.
- */
+
 public class JdbcTokenRepositoryImpl extends JdbcDaoSupport {
 
     /** Default SQL for creating the database table to store the tokens */

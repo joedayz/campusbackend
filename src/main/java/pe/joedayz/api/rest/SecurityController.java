@@ -62,7 +62,9 @@ public class SecurityController {
     @Transactional
     public ResponseEntity<JsonResult> generateRecoverEmail(@RequestBody String usernameJson) {
         LOGGER.info("Password recovery request for user: {}", usernameJson );
+        
         Map userJson = new Gson().fromJson(usernameJson, Map.class);
+        
         String username = (String) userJson.get("username");
         User currentUser = userJpaRepository.findByUserName(username);
 
@@ -92,11 +94,11 @@ public class SecurityController {
 
         String token = generateSecurityToken();
         ResetRegistry resetRegistry = new ResetRegistry();
-//        resetRegistry.setResetId(1);
+
 
         resetRegistry.setUserName(username);
         resetRegistry.setToken(token);
-//        resetRegistry.setCreatedDate(new Date());
+
         ResetRegistry entity = resetRegistryJpaRepository.save(resetRegistry);
 
         try {

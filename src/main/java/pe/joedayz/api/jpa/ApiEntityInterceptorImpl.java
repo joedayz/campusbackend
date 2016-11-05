@@ -37,11 +37,6 @@ public class ApiEntityInterceptorImpl extends EmptyInterceptor implements ApiEnt
                 }
             }
 
-//            BaseEntity source = (BaseEntity) entity;
-//            if (StringUtil.hasText(source.getCreatedBy())) {
-//                source.setUpdatedBy(LogContext.getUserId());
-//                source.setUpdatedDate(new Date());
-//            }
         }
         return true; //super.onSave(entity, id, state, propertyNames, types);
     }

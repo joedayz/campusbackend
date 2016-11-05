@@ -85,7 +85,7 @@ public class RoleJdbcRepositoryImpl implements RoleJdbcRepository {
         sql.append(" r.role_name \"roleName\", ");
         sql.append(" ( case when r.code IN ('ADMIN','PROFESOR','ESTUDIANTE') THEN 'N' " +
                    "   ELSE 'Y'  END) \"isDeleteRole\", ");
-        sql.append("  'Y'   \"isUpdateRole\", ");
+        sql.append("  'Y'  as  \"isUpdateRole\", ");
         sql.append(" ( CASE WHEN R.CODE IN ('PROFESOR','ESTUDIANTE') THEN 'N' " +
                 "   ELSE 'Y'  END) \"isEditCode\", ");
 
