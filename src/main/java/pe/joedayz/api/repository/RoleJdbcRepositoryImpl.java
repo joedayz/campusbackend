@@ -98,7 +98,7 @@ public class RoleJdbcRepositoryImpl implements RoleJdbcRepository {
 
         sql.append(" where 1=1 ");
 
-        sql.append(params.filter(" and upper(r.role_name)  like upper('%'|| :rname ||'%')  ",name));
+        sql.append(params.filter(" and upper(r.role_name)  like upper(CONCAT('%', :rname , '%'))  ",name));
         sql.append(" order by  r.role_id ");
         return sql.toString();
     }
