@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: campus-backend
+
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER:http://user:secret4@localhost:8888}
+      failFast: true
