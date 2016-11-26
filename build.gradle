@@ -29,6 +29,7 @@ jar {
 	baseName = 'campus-backend'
 	version = '0.0.1-SNAPSHOT'
 }
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -147,7 +148,7 @@ asciidoctor {
 	
 }
 
-group = 'campusjoedayz'
+group = 'joedayz'
 task buildDocker(type: Docker, dependsOn: assemble) {
 	push = false
 	applicationName = jar.baseName
