@@ -73,7 +73,7 @@ public class Curso extends AuditingEntity implements Serializable, BaseEntity{
 	
 	
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @OrderBy("ide_boleto ASC")
+    
 	private List<TemasCurso> temas;
 	
 
