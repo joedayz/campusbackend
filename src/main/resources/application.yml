@@ -1,5 +1,0 @@
-server:
-  port: ${vcap.application.port:8999}
-
-
-
