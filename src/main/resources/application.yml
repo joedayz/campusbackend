@@ -18,7 +18,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost/api
     username: root
-    password: joedayz
+    password: enterprise
     testOnBorrow: true
     removeAbandonedTimeout: 1800
     removeAbandoned: true
