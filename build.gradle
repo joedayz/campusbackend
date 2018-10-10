@@ -42,6 +42,11 @@ dependencies {
 	
 	compile('net.sf.dozer:dozer:5.5.1')
 	compile('com.google.code.gson:gson:2.6.2')
+
+
+	compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
+	compile group: 'org.json', name: 'json', version: '20160212'
+	compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.22.2'
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
