@@ -50,3 +50,6 @@ src/main/resources/static/
 
 # IDEA
 .idea/
+
+out/
+
