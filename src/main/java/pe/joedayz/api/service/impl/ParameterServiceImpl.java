@@ -4,7 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import pe.joedayz.api.domain.model.entities.Parameter;
 import pe.joedayz.api.domain.model.repository.jpa.ParameterJpaRepository;
 import pe.joedayz.api.dto.ParameterDto;
@@ -35,6 +35,7 @@ public class ParameterServiceImpl implements ParameterService {
 	
 
 	@Override
+	@Transactional
 	public Long createParameter(ParameterDto value) {
 		Parameter entity = new Parameter();
 		if(value.getParameterId() == null){
